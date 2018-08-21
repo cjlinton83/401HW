@@ -23,7 +23,7 @@
       subroutine io_handler
             implicit none
             integer :: n
-            real :: v
+            real    :: v
             real, parameter :: lb_per_kg = 2.20462
             real, parameter :: ft_per_m  = 3.28084
 
