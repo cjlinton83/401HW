@@ -1,3 +1,9 @@
+C Program-ID: P1.f
+C Author: Christopher Linton
+C Team: Blue Group
+C Team Leader: Christopher Linton
+C Team Members: Evan Cockerham, Subal Sapkota, Joseph Schenck
+C Due Date: 8-28-2018
       program P1
             do
                   call display_menu
