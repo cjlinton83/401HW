@@ -13,64 +13,77 @@ DATA DIVISION.
 FILE SECTION.
 FD IN-FILE.
 01 IN-RECORD.
-    05 STUDENT-NAME     PIC A(19).
-    05 STUDENT-NUMBER   PIC X(10).
-    05 SEMESTER         PIC X(15).
-    05 COURSE           PIC X(15).
-    05 COURSE-TITLE     PIC X(30).
-    05 GRADE            PIC A(5).
-    05 EARNED           PIC 9.99.
+    05 STUDENT-NAME         PIC A(19).
+    05 STUDENT-NUMBER       PIC X(10).
+    05 SEMESTER             PIC X(15).
+    05 COURSE               PIC X(15).
+    05 COURSE-TITLE         PIC X(30).
+    05 GRADE                PIC A(5).
+    05 EARNED               PIC 9.99.
 FD OUT-FILE.
 01 OUT-SCHOOL-NAME.
-    05 FILLER           PIC A(22).
-    05 FILLER           PIC A(34).
+    05 FILLER               PIC A(22).
+    05 FILLER               PIC A(34).
 01 OUT-SCHOOL-ADDR.
-    05 FILLER           PIC A(30).
-    05 FILLER           PIC X(18).
-01 OUT-SPACE            PIC A.
-01 OUT-STUDENT-NAME     PIC A(19).
-01 OUT-STUDENT-NUMBER   PIC X(10).
-01 OUT-SEMESTER         PIC X(15).
+    05 FILLER               PIC A(30).
+    05 FILLER               PIC X(18).
+01 OUT-SPACE                PIC A.
+01 OUT-STUDENT-NAME         PIC A(19).
+01 OUT-STUDENT-NUMBER       PIC X(10).
+01 OUT-SEMESTER             PIC X(15).
 01 OUT-LABELS.
-    05 FILLER           PIC X(15).
-    05 FILLER           PIC X(30).
-    05 FILLER           PIC A(5).
-    05 FILLER           PIC A(11).
-    05 FILLER           PIC AAAA.
+    05 FILLER               PIC X(15).
+    05 FILLER               PIC X(30).
+    05 FILLER               PIC A(5).
+    05 FILLER               PIC A(11).
+    05 FILLER               PIC AAAA.
 01 OUT-RECORD.
-    05 OUT-COURSE       PIC X(15).
-    05 OUT-COURSE-TITLE PIC X(30).
-    05 OUT-GRADE        PIC A(5).
-    05 OUT-EARNED       PIC 9.99.
-    05 FILLER           PIC A(5).
-    05 OUT-QPTS         PIC ZZ9.99.
+    05 OUT-COURSE           PIC X(15).
+    05 OUT-COURSE-TITLE     PIC X(30).
+    05 OUT-GRADE            PIC A(5).
+    05 OUT-EARNED           PIC 9.99.
+    05 FILLER               PIC A(5).
+    05 OUT-QPTS             PIC ZZ9.99.
+01 OUT-EOS-SEMESTER-TOTALS.
+    05 FILLER               PIC A(29).
+    05 FILLER               PIC A(20).
+01 OUT-EOS-CUM-TOTALS.
+    05 FILLER               PIC A(29).
+    05 FILLER               PIC A(20).
 
 WORKING-STORAGE SECTION.
 01 WS-SCHOOL-NAME.
-    05 FILLER           PIC A(22)   VALUE SPACE.
-    05 FILLER           PIC A(34)   VALUE "SOUTHEASTERN LOUISIANA UNIVSERITY".
+    05 FILLER               PIC A(22)   VALUE SPACE.
+    05 FILLER               PIC A(34)   VALUE "SOUTHEASTERN LOUISIANA UNIVSERITY".
 01 WS-SCHOOL-ADDR.
-    05 FILLER           PIC A(30)   VALUE SPACE.
-    05 FILLER           PIC X(80)   VALUE "HAMMOND, LA 70402".
-01 WS-SPACE             PIC A       VALUE SPACE.
+    05 FILLER               PIC A(30)   VALUE SPACE.
+    05 FILLER               PIC X(80)   VALUE "HAMMOND, LA 70402".
+01 WS-SPACE                 PIC A       VALUE SPACE.
 01 WS-LABELS.
-    05 FILLER           PIC X(15)   VALUE "COURSE".
-    05 FILLER           PIC X(30)   VALUE "TITLE".
-    05 FILLER           PIC A(5)    VALUE "GR".
-    05 FILLER           PIC A(11)   VALUE "EARNED".
-    05 FILLER           PIC AAAA    VALUE "QPTS".
-01 EOF                  PIC A       VALUE "N".
-01 WS-SEMESTER          PIC X(15).
+    05 FILLER               PIC X(15)   VALUE "COURSE".
+    05 FILLER               PIC X(30)   VALUE "TITLE".
+    05 FILLER               PIC A(5)    VALUE "GR".
+    05 FILLER               PIC A(11)   VALUE "EARNED".
+    05 FILLER               PIC AAAA    VALUE "QPTS".
+01 EOF                      PIC A       VALUE "N".
+01 WS-SEMESTER              PIC X(15).
 01 WS-RECORD.
-    05 WS-COURSE        PIC X(15).
-    05 WS-COURSE-TITLE  PIC X(30).
-    05 WS-GRADE         PIC A(5).
-    05 WS-EARNED        PIC 9.99.
-    05 FILLER           PIC A(5)    VALUE SPACE.
-    05 WS-QPTS          PIC ZZ9.99.
+    05 WS-COURSE            PIC X(15).
+    05 WS-COURSE-TITLE      PIC X(30).
+    05 WS-GRADE             PIC A(5).
+    05 WS-EARNED            PIC 9.99.
+    05 FILLER               PIC A(5)    VALUE SPACE.
+    05 WS-QPTS              PIC ZZ9.99.
+01 WS-EOS-SEMESTER-TOTALS.
+    05 FILLER               PIC A(29)   VALUE SPACE.
+    05 FILLER               PIC A(20)   VALUE "SEMESTER".
+01 WS-EOS-CUM-TOTALS.
+    05 FILLER               PIC A(29)   VALUE SPACE.
+    05 FILLER               PIC A(20)   VALUE "CUMULATIVE".
 
 *> WSC FIELDS ARE USED FOR COMPUTATION THEN MOVED TO ASSOCIATED WS FIELD.
-01 WSC-QPTS             PIC 999V99.
+01 WSC-QPTS                 PIC 999V99.
+
 
 PROCEDURE DIVISION.
 MAIN-LOGIC SECTION.
@@ -133,6 +146,10 @@ WRITE-DISPLAY-REPORT.
         PERFORM READ-NEXT-RECORD
     END-PERFORM.
 
+    PERFORM CALCULATE-EOS-TOTALS.
+    PERFORM DISPLAY-EOS-TOTALS.
+    PERFORM WRITE-EOS-TOTALS.
+
 WRITE-HEADER.
     WRITE OUT-SCHOOL-NAME FROM WS-SCHOOL-NAME.
     WRITE OUT-SCHOOL-ADDR FROM WS-SCHOOL-ADDR.
@@ -177,8 +194,12 @@ SET-QPTS.
 CALCULATE-EOS-TOTALS.
 
 DISPLAY-EOS-TOTALS.
+    DISPLAY WS-EOS-SEMESTER-TOTALS.
+    DISPLAY WS-EOS-CUM-TOTALS.
 
 WRITE-EOS-TOTALS.
+    WRITE OUT-EOS-SEMESTER-TOTALS FROM WS-EOS-SEMESTER-TOTALS.
+    WRITE OUT-EOS-CUM-TOTALS FROM WS-EOS-CUM-TOTALS.
 
 DISPLAY-SEMESTER-RECORDS.
     DISPLAY WS-RECORD.
