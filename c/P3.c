@@ -33,10 +33,9 @@ void print_environ() {
 
 void exec_external_command(char** args) {
     char command[MAX_LEN] = "";
-    int i = 0;
 
-    while (args[i]) {
-        strcat(command, args[i++]);
+    while (*args) {
+        strcat(command, *args++);
         strcat(command, " ");
     }
     
