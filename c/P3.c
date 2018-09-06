@@ -6,6 +6,8 @@
 #define MAX_ARGS 64
 #define DELIM " \t\n"
 
+extern char** environ;
+
 int get_line(char* line) {
     printf("=> ");
     if (fgets(line, MAX_LEN, stdin) == NULL)
@@ -23,23 +25,49 @@ int parse_line(char* line, char** args) {
     return i-1;
 }
 
-void exec_command(char** args) {
+void print_environ() {
+    char** env = environ;
+    while (*env)
+        printf("%s\n", *env++);
+}
+
+void exec_external_command(char** args) {
+    char command[MAX_LEN] = "";
+    int i = 0;
+
+    while (args[i]) {
+        strcat(command, args[i++]);
+        strcat(command, " ");
+    }
+    
+    system(command);
+}
+
+void exec_mydir(char** args) {
     char* command = args[0];
     char* directory = args[1];
-    char ls[MAX_LEN];
+    char ls[MAX_LEN] = "";
 
     strcat(ls, "ls -al ");
     if (directory != NULL)
         strcat(ls, directory);
+    
+    system(ls);
+}
 
-    if (strcmp(command, "myquit") == 0)
-        exit(0);
+void exec_command(char** args) {
+    char* command = args[0];
+
     if (strcmp(command, "myclear") == 0)
         system("clear");
-    if (strcmp(command, "mydir") == 0) {
-        printf("%s\n", ls);
-        system(ls);
-    }
+    else if (strcmp(command, "mydir") == 0)
+        exec_mydir(args);
+    else if (strcmp(command, "myenviron") == 0)
+        print_environ();
+    else if (strcmp(command, "myquit") == 0)
+        exit(0);
+    else
+        exec_external_command(args);
 }
 
 int main(void) {
