@@ -23,9 +23,23 @@ int parse_line(char* line, char** args) {
     return i-1;
 }
 
-void run_command(char** args) {
-    for (int i = 0; args[i] != NULL; i++)
-        printf("%s\n", args[i]);
+void exec_command(char** args) {
+    char* command = args[0];
+    char* directory = args[1];
+    char ls[MAX_LEN];
+
+    strcat(ls, "ls -al ");
+    if (directory != NULL)
+        strcat(ls, directory);
+
+    if (strcmp(command, "myquit") == 0)
+        exit(0);
+    if (strcmp(command, "myclear") == 0)
+        system("clear");
+    if (strcmp(command, "mydir") == 0) {
+        printf("%s\n", ls);
+        system(ls);
+    }
 }
 
 int main(void) {
@@ -34,7 +48,7 @@ int main(void) {
     
     while (get_line(line) != 0)
         if (parse_line(line, args) > 0)
-            run_command(args);
+            exec_command(args);
 
     return 0;
 }
