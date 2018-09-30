@@ -3,12 +3,15 @@
         <style>
             body {
                 margin: auto;
-                width: 50%;
+                width: 80%;
                 border: 2px solid gray;
                 padding: 10px;
             }
             .center {
                 text-align: center;
+            }
+            .indent {
+                margin-left: 15px;
             }
         </style>
     </head>
@@ -16,71 +19,94 @@
         <h1 class="center"><em>CMPS401 PHP Quiz</em></h1>
         <form action="P4.php" method="POST">
             <p class="center">
-                First Name:<input type="text" name="firstName">
+                First Name:<input type="text" name="firstName">&nbsp;
                 Last Name:<input type="text" name="lastName">
             </p><hr>
             <p>
                 1. What does PHP stand for?<br>
-                <input type="radio" name="q1" value="a">a) PHP: Hypertext Preprocessor<br>
-                <input type="radio" name="q1" value="b">b) Personal Hypertext Processor<br>
-                <input type="radio" name="q1" value="c">c) Private Home Page<br>
-                <input type="radio" name="q1" value="d">d) Personal Home Page<br>
+                <div class="indent">
+                    <input type="radio" name="q1" value="a">a) PHP: Hypertext Preprocessor<br>
+                    <input type="radio" name="q1" value="b">b) Personal Hypertext Processor<br>
+                    <input type="radio" name="q1" value="c">c) Private Home Page<br>
+                    <input type="radio" name="q1" value="d">d) Personal Home Page<br>
+                </div>
             </p>
             <p>
                 2. How do you write "Hello World" in PHP?<br>
-                <input type="radio" name="q2" value="a">a) "Hello World";<br>
-                <input type="radio" name="q2" value="b">b) Document.Write("Hello World");<br>
-                <input type="radio" name="q2" value="c">c) echo "Hello World";<br>
+                <div class="indent">
+                    <input type="radio" name="q2" value="a">a) "Hello World";<br>
+                    <input type="radio" name="q2" value="b">b) Document.Write("Hello World");<br>
+                    <input type="radio" name="q2" value="c">c) echo "Hello World";<br>
+                </div>
             </p>
             <p>
                 3. All variables in PHP start with which symbol?<br>
-                <input type="radio" name="q3" value="a">a) $<br>
-                <input type="radio" name="q3" value="b">b) @<br>
-                <input type="radio" name="q3" value="c">c) %<br>
-                <input type="radio" name="q3" value="d">d) &<br>
+                <div class="indent">
+                    <input type="radio" name="q3" value="a">a) $<br>
+                    <input type="radio" name="q3" value="b">b) @<br>
+                    <input type="radio" name="q3" value="c">c) %<br>
+                    <input type="radio" name="q3" value="d">d) &<br>
+                </div>
             </p>
             <p>
                 4. What is the correct way to add 1 to the $count variable?<br>
-                <input type="radio" name="q4" value="a">a) $count++;<br>
-                <input type="radio" name="q4" value="b">b) $count =+ 1<br>
-                <input type="radio" name="q4" value="c">c) ++count<br>
-                <input type="radio" name="q4" value="d">d) count++;<br>
+                <div class="indent">
+                    <input type="radio" name="q4" value="a">a) $count++;<br>
+                    <input type="radio" name="q4" value="b">b) $count =+ 1<br>
+                    <input type="radio" name="q4" value="c">c) ++count<br>
+                    <input type="radio" name="q4" value="d">d) count++;<br>
+                </div>
             </p>
             <p>
                 5. How do you get information from a form that is submitted using the "post" method?<br>
-                <input type="radio" name="q5" value="a">a) Request.Form;<br>
-                <input type="radio" name="q5" value="b">b) $_GET[];<br>
-                <input type="radio" name="q5" value="c">c) $_POST[];<br>
-                <input type="radio" name="q5" value="d">d) Request.QueryString;<br>
+                <div class="indent">
+                    <input type="radio" name="q5" value="a">a) Request.Form;<br>
+                    <input type="radio" name="q5" value="b">b) $_GET[];<br>
+                    <input type="radio" name="q5" value="c">c) $_POST[];<br>
+                    <input type="radio" name="q5" value="d">d) Request.QueryString;<br>
+                </div>
             </p>
             <p>
                 6. When using the POST method, variables are displayed in the URL:<br>
-                <input type="radio" name="q6" value="a">a) True<br>
-                <input type="radio" name="q6" value="b">b) False<br>
+                <div class="indent">
+                    <input type="radio" name="q6" value="a">a) True<br>
+                    <input type="radio" name="q6" value="b">b) False<br>
+                </div>
             </p>
             <p>
                 7. In PHP you can use both single quotes ('') and double quotes ("") for strings:<br>
-                <input type="radio" name="q7" value="a">a) True<br>
-                <input type="radio" name="q7" value="b">b) False<br>
+                <div class="indent">
+                    <input type="radio" name="q7" value="a">a) True<br>
+                    <input type="radio" name="q7" value="b">b) False<br>
+                </div>
             </p>
             <p>
                 8. What is the correct way to create a function in PHP?<br>
-                <input type="radio" name="q8" value="a">a) create myFunction()<br>
-                <input type="radio" name="q8" value="b">b) new_function myFunction()<br>
-                <input type="radio" name="q8" value="c">c) function myFunction()<br>
+                <div class="indent">
+                    <input type="radio" name="q8" value="a">a) create myFunction()<br>
+                    <input type="radio" name="q8" value="b">b) new_function myFunction()<br>
+                    <input type="radio" name="q8" value="c">c) function myFunction()<br>
+                </div>
             </p>
             <p>
                 9. What is the correct way to connect to a MySQL database?<br>
-                <input type="radio" name="q9" value="a">a) mysql_connect("localhost");<br>
-                <input type="radio" name="q9" value="b">b) mysql_query("localhost");<br>
-                <input type="radio" name="q9" value="c">c) connect_mysql("localhost");<br>
-                <input type="radio" name="q9" value="d">d) mysql_open("localhost");<br>
+                <div class="indent">
+                    <input type="radio" name="q9" value="a">a) mysql_connect("localhost");<br>
+                    <input type="radio" name="q9" value="b">b) mysql_query("localhost");<br>
+                    <input type="radio" name="q9" value="c">c) connect_mysql("localhost");<br>
+                    <input type="radio" name="q9" value="d">d) mysql_open("localhost");<br>
+                </div>
             </p>
             <p>
                 10. The following HTML code will direct from information and control to what file?<br>
-                &nbsp;&nbsp;&nbsp;&nbsp; &lt;form action="P4.php" method="post"&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="q10">(Note: case-sensitive)
+                <div class="indent">
+                    &lt;form action="P4.php" method="post"&gt;<br>
+                    <input type="text" name="q10">&nbsp;(Note: case-sensitive)
+                </div>
             </p><hr>
+            <div class="center">
+                <input type="submit">
+            </div>
         </form>
     </body>
 </html>
