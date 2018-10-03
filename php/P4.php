@@ -38,7 +38,6 @@
                 $q = "INSERT INTO g101 VALUES('$name', '$score', '$grade', '$date')";
                 sendQuery($connection, $q);
             }
-                
 
             // Close connection to database
             mysqli_close($connection);
