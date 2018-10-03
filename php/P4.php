@@ -43,13 +43,13 @@
             function getGrade($score) {
                 $grade = '';
 
-                if (($score <= 100) && (score >= 90)) {
+                if (($score <= 100) && ($score >= 90)) {
                     $grade = 'A';
-                } elseif (($score < 90) && (score >= 80)) {
+                } elseif (($score < 90) && ($score >= 80)) {
                     $grade = 'B';
-                } elseif (($score < 80) && (score >= 70)) {
+                } elseif (($score < 80) && ($score >= 70)) {
                     $grade = 'C';
-                } elseif (($score < 70) && (score >= 60)) {
+                } elseif (($score < 70) && ($score >= 60)) {
                     $grade = 'D';
                 } else {
                     $grade = 'F';
