@@ -35,7 +35,7 @@
                 $q = "UPDATE g101 SET Score='$score', Grade='$grade', Date='$date' WHERE Name='$name'";
                 sendQuery($connection, $q);
             } else {
-                $q = "INSERT INTO g101 VALUES('$name', '$score', '$grade', '$date'";
+                $q = "INSERT INTO g101 VALUES('$name', '$score', '$grade', '$date')";
                 sendQuery($connection, $q);
             }
                 
