@@ -3,9 +3,11 @@
     </head>
     <body>
         <?php
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
             $score = getScore();
-
-            print "User: ".$_POST['firstName']." ".$_POST['lastName']."\n";
+            
+            print "User: ".firstName." ".lastName."\n";
             print "Score: ".score."\n";
 
             function getScore() {
