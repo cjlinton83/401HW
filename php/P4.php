@@ -3,9 +3,7 @@
     </head>
     <body>
         <?php
-            $name = $_POST['lastName'];
-            $name += ', ';
-            $name += $_POST['firstName'];
+            $name = $_POST['lastName'].', '.$_POST['firstName'];
             $score = getScore();
             $grade = getGrade($score);
             
