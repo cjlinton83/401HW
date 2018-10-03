@@ -3,13 +3,14 @@
     </head>
     <body>
         <?php
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
+            $name = $_POST['lastName'];
+            $name += ', ';
+            $name += $_POST['firstName'];
             $score = getScore();
             $grade = getGrade($score);
             
             // Display results from P4.html
-            print "User: ".$firstName." ".$lastName."<br>";
+            print "User: ".$name."<br>";
             print "Score: ".$score."<br>";
             print "Grade: ".$grade."<br>";
 
@@ -19,17 +20,22 @@
                 die("<br>Connection failed: ".$connection->connect_error);
             else
                 print "<br>Connection successful: database cmps401 connected";
-            
+                        
             // Create table to store results from P4.html
-            $query = 'CREATE TABLE bikes (
-                        FirstName varchar(20),
-                        LastName  varchar(20),
+            $query = 'CREATE TABLE g101 (
+                        Name varchar(20),
                         Score     int,
                         Grade     varchar(1),
                         Date      varchar(20),
-                        PRIMARY KEY (LastName)
-                      )';
+                        PRIMARY KEY (Name)
+            )';
             sendQuery($connection, $query);
+
+            // // Query key
+            // if (existingKey($name))
+            //     updateRecord($score, $grade);
+            // else
+            //     createRecord($name, $score, $grade);
 
             // Close connection to database
             mysqli_close($connection);
