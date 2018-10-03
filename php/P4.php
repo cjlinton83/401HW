@@ -6,7 +6,7 @@
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
             $score = getScore();
-            $grade = getGrade($score);
+            $grade = getGrade();
             
             print "User: ".$firstName." ".$lastName."<br>";
             print "Score: ".$score."<br>";
@@ -40,7 +40,7 @@
                 return $score;
             }
 
-            function getGrade($score) {
+            function getGrade() {
                 $grade = '';
 
                 if (($score <= 100) && ($score >= 90)) {
