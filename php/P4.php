@@ -7,8 +7,8 @@
             $lastName = $_POST['lastName'];
             $score = getScore();
             
-            print "User: ".firstName." ".lastName."\n";
-            print "Score: ".score."\n";
+            print "User: ".$firstName." ".$lastName."\n";
+            print "Score: ".$score."\n";
 
             function getScore() {
                 $score = 0;
