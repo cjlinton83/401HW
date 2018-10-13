@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        let deck = [];
+
+        // initialize deck
+        let count = 0;
+        for (let suit = 1; suit <= 4; suit++) {
+            for (let value = 1; value <= 13; value++) {
+                deck[count++] = [suit, value];
+            }
+        }
+        
+        // shuffle the deck
+        for (let i = 51; i > 0; i--) {
+            let r = Math.floor((i+1)*Math.random());
+
+            let temp = deck[r];
+            deck[r] = deck[i];
+            deck[i] = temp;
+        }
+    </script>
+
+    <style type="text/css">
+        body {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #board {
+            color: lightgreen;
+            background-color: forestgreen;
+            margin: auto;
+            width: 600px;
+            height: 400px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #title {
+            background-color: darkslategray;
+            margin: auto;
+            padding: 10px;
+            border-radius: 5px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="title"><img src="title.png" alt="Blackjack"></div>
+    <div id="board">
+        <div style="text-align: left;">Dealer</div>
+    </div>
+</body>
+</html>
