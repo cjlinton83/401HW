@@ -18,21 +18,21 @@ filecount = 0
 tempdir = "./temp/"
 
 with ZipFile(sys.argv[1], "r") as zf:
-	zf.extractall(tempdir)
+    zf.extractall(tempdir)
 
 for file in os.listdir(tempdir):
-	filecount += 1
-	with open(tempdir + file, "r") as infile:
-		for name in infile.read().splitlines():
-			if name in namelist:
-				namelist[name] += 1
-			else:
-				namelist[name] = 1
+    filecount += 1
+    with open(tempdir + file, "r") as infile:
+        for name in infile.read().splitlines():
+            if name in namelist:
+                namelist[name] += 1
+            else:
+                namelist[name] = 1
 
 for name, count in namelist.items():
-	if count == filecount:
-		print(name)
-		outfile.write(name + "\n")
+    if count == filecount:
+        print(name)
+        outfile.write(name + "\n")
 
 outfile.close()
 shutil.rmtree(tempdir)
